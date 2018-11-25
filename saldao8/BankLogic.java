@@ -152,7 +152,7 @@ public class BankLogic implements AccountTypes
         if(customer != null)
         {
             String closedAccountInfo = customer.removeAccount(accountId);
-            System.out.println(closedAccountInfo);
+            System.out.println(closedAccountInfo); // todo jag tolkar skriva till skärm som
             return closedAccountInfo;
         }
 

@@ -8,7 +8,7 @@ public abstract class Account
 {
     private double balance;
     private int accountId;
-    private double interestRate4NegBalance; // todo bara för att det e en del i
+    private double interestRate; // todo bara för att det e en del i
                                             // modellen/grunden - obs var static
                                             // innan
     private String accountType;
@@ -23,7 +23,7 @@ public abstract class Account
         accountIdCounter += 1;
 
         balance = 0;
-        interestRate4NegBalance = 0; // todo behöver ge värde här? bara en del
+        interestRate = 0; // todo behöver ge värde här? bara en del
                                      // av modellen ju
         // accountType = "account"; // todo se ovan
     }
@@ -38,14 +38,14 @@ public abstract class Account
         balance = amount;
     }
 
-    protected double getInterestRate4NegBalance()
+    protected double getInterestRate()
     {
-        return interestRate4NegBalance;
+        return interestRate;
     }
 
-    protected void setInterestRate4NegBalance(double interest)
+    protected void setInterestRate(double interest)
     {
-        interestRate4NegBalance = interest;
+        interestRate = interest;
     }
 
     protected String getAccountType()
@@ -124,7 +124,7 @@ public abstract class Account
     public String toString()
     {
         return Integer.toString(accountId) + " " + Double.toString(balance) + " " + accountType + " "
-                + Double.toString(this.getInterest());
+                + Double.toString(interestRate);
     }
 
     abstract boolean withdraw(double amount);

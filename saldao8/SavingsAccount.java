@@ -18,7 +18,7 @@ public class SavingsAccount extends Account
     public SavingsAccount()
     {
         super();
-        this.setInterestRate4NegBalance(1); // saldao: är den så viktig för modellen så att vi måste göra på detta vis
+        this.setInterestRate(1); // saldao: är den så viktig för modellen så att vi måste göra på detta vis
         this.setAccountType("Saving account");
         
         neverWithdrawn = true;
@@ -32,7 +32,7 @@ public class SavingsAccount extends Account
      */
     public double getInterest()
     {
-        return (this.getBalance() * (this.getInterestRate4NegBalance() / 100));
+        return (this.getBalance() * (this.getInterestRate() / 100));
     }
 
     /**

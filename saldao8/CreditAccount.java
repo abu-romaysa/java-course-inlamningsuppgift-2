@@ -2,7 +2,6 @@ package saldao8;
 
 public class CreditAccount extends Account
 {
-    private static double interestRate4PosBalance; // todo iom att det kan ändras och då ska alla av dessa typer ändras
     private double creditLimit; // should I initialize static values here? https://beginnersbook.com/2013/05/static-variable/ - Static variables are initialized before any object of that class is created.
                                 // antar ej static för olika för olika kunder
     /**
@@ -12,10 +11,8 @@ public class CreditAccount extends Account
     {
         super();
         
-        this.setInterestRate4NegBalance(7); // saldao: är den så viktig för modellen så att vi måste göra på detta vis
+        this.setInterestRate(0.5); // saldao: är den så viktig för modellen så att vi måste göra på detta vis // iom saldo 0
         this.setAccountType("Credit account");
-        
-        interestRate4PosBalance = 0.5;
         creditLimit = 5000;
     }
     
@@ -28,11 +25,11 @@ public class CreditAccount extends Account
     {
         if(this.getBalance() < 0)
         {
-            return (this.getBalance() * (this.getInterestRate4NegBalance() / 100)); // todo om saldo e neg? abs värde?
+            return (this.getBalance() * (this.getInterestRate() / 100)); // todo om saldo e neg? abs värde?
         }
         else
         {
-            return (this.getBalance() * (interestRate4PosBalance / 100));
+            return (this.getBalance() * (this.getInterestRate() / 100));
         }
     }
     
@@ -53,9 +50,30 @@ public class CreditAccount extends Account
         
         balance -= amount;
         this.setBalance(balance);
-        this.setTransaction(this.getTransactionDate() + " " + (0 - amount) + " " + balance); 
+        this.setTransaction(this.getTransactionDate() + " " + (0 - amount) + " " + balance);
+        
+        if(balance < 0)
+        {
+            this.setInterestRate(7);
+        }
         
         return true;
+    }
+    
+    /**
+     * Deposits the amount to the account
+     * 
+     * @param amount
+     *            - the amount to deposit
+     */
+    public void deposit(double amount)
+    {
+        super.deposit(amount); // todo antingen detta eller kolla typ i superklassen. detta med super fins i boken för att spara kodrader
+        
+        if(this.getBalance() >= 0)
+        {
+            this.setInterestRate(0.5);
+        }
     }
     
     public static void main(String[] args)
@@ -79,12 +97,30 @@ public class CreditAccount extends Account
 //        ca.deposit(-1000);
 //        System.out.println(ca.getInterest());
         
-        System.out.println("Get transactions: " + ca.getTransactions());
-        ca.deposit(1000);
-        System.out.println("getBalance: " + ca.getBalance());
-        System.out.println("Get transactions: " + ca.getTransactions());
-        System.out.println("withdraw: " + ca.withdraw(6000));
-        System.out.println("getBalance: " + ca.getBalance());
-        System.out.println("Get transactions: " + ca.getTransactions());
+//        System.out.println("Get transactions: " + ca.getTransactions());
+//        ca.deposit(1000);
+//        System.out.println("getBalance: " + ca.getBalance());
+//        System.out.println("Get transactions: " + ca.getTransactions());
+//        System.out.println("withdraw: " + ca.withdraw(6000));
+//        System.out.println("getBalance: " + ca.getBalance());
+//        System.out.println("Get transactions: " + ca.getTransactions());
+        
+//        System.out.println("getBalance: " + ca.getBalance());
+//        System.out.println(ca.getInterestRate());
+//        ca.deposit(500);
+//        System.out.println("getBalance: " + ca.getBalance());
+//        System.out.println(ca.getInterestRate());
+//        ca.withdraw(600);
+//        System.out.println("getBalance: " + ca.getBalance());
+//        System.out.println(ca.getInterestRate());
+//        ca.deposit(1100);
+//        System.out.println("getBalance: " + ca.getBalance());
+//        System.out.println(ca.getInterestRate());
+//        ca.withdraw(1100);
+//        System.out.println("getBalance: " + ca.getBalance());
+//        System.out.println(ca.getInterestRate());
+//        ca.deposit(100);
+//        System.out.println("getBalance: " + ca.getBalance());
+//        System.out.println(ca.getInterestRate());
     }
 }
