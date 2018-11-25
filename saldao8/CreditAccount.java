@@ -4,6 +4,8 @@ public class CreditAccount extends Account
 {
     private double creditLimit; // should I initialize static values here? https://beginnersbook.com/2013/05/static-variable/ - Static variables are initialized before any object of that class is created.
                                 // antar ej static för olika för olika kunder
+    private final static String ACCOUNT_TYPE = "Credit account"; 
+    
     /**
      * Constructor
      */
@@ -12,7 +14,6 @@ public class CreditAccount extends Account
         super();
         
         this.setInterestRate(0.5); // saldao: är den så viktig för modellen så att vi måste göra på detta vis // iom saldo 0
-        this.setAccountType("Credit account");
         creditLimit = 5000;
     }
     
@@ -76,6 +77,11 @@ public class CreditAccount extends Account
         }
     }
     
+    protected String getAccountType()
+    {
+        return ACCOUNT_TYPE;
+    }
+    
     public static void main(String[] args)
     {
         System.out.println("testing-ca");
@@ -122,5 +128,7 @@ public class CreditAccount extends Account
 //        ca.deposit(100);
 //        System.out.println("getBalance: " + ca.getBalance());
 //        System.out.println(ca.getInterestRate());
+        
+        System.out.println(ca.toString());
     }
 }

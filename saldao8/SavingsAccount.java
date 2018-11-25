@@ -11,6 +11,7 @@ public class SavingsAccount extends Account
 {
     private boolean neverWithdrawn;
     private static double interestRate4Withdrawal;
+    private static final String ACCOUNT_TYPE = "Saving account"; 
 
     /**
      * Constructor
@@ -19,7 +20,6 @@ public class SavingsAccount extends Account
     {
         super();
         this.setInterestRate(1); // saldao: är den så viktig för modellen så att vi måste göra på detta vis
-        this.setAccountType("Saving account");
         
         neverWithdrawn = true;
         interestRate4Withdrawal = 2; // konsekvent
@@ -74,6 +74,11 @@ public class SavingsAccount extends Account
         return true;     
     }
     
+    protected String getAccountType()
+    {
+        return ACCOUNT_TYPE;
+    }
+    
     public static void main(String[] args)
     {
         System.out.println("testing");
@@ -110,6 +115,8 @@ public class SavingsAccount extends Account
 //        System.out.println(sa.getAccountType());
 //        System.out.println(sa2.getAccountType());
 //        System.out.println(ca.getAccountType());
+        
+        System.out.println(sa.toString());
     }
 
 }

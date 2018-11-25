@@ -8,14 +8,10 @@ public abstract class Account
 {
     private double balance;
     private int accountId;
-    private double interestRate; // todo bara för att det e en del i
-                                            // modellen/grunden - obs var static
-                                            // innan
-    private String accountType;
+    private double interestRate; // todo bara för att det e en del i modellen/grunden - obs var static innan ej nu när den ändras pos/neg
     private static int accountIdCounter = 1001;
-    
     private ArrayList<String> transactions = new ArrayList<String>();
-
+    
     public Account()
     {
         // assign an accountId and accumulate the counter that handles Ids
@@ -23,9 +19,6 @@ public abstract class Account
         accountIdCounter += 1;
 
         balance = 0;
-        interestRate = 0; // todo behöver ge värde här? bara en del
-                                     // av modellen ju
-        // accountType = "account"; // todo se ovan
     }
 
     protected double getBalance()
@@ -46,16 +39,6 @@ public abstract class Account
     protected void setInterestRate(double interest)
     {
         interestRate = interest;
-    }
-
-    protected String getAccountType()
-    {
-        return accountType;
-    }
-
-    protected void setAccountType(String accountType)
-    {
-        this.accountType = accountType;
     }
 
     /**
@@ -123,11 +106,12 @@ public abstract class Account
      */
     public String toString()
     {
-        return Integer.toString(accountId) + " " + Double.toString(balance) + " " + accountType + " "
+        return Integer.toString(accountId) + " " + Double.toString(balance) + " " + getAccountType() + " "
                 + Double.toString(interestRate);
     }
 
-    abstract boolean withdraw(double amount);
-
-    abstract double getInterest();
+    // declaration of abstract methods
+    protected abstract String getAccountType(); // https://stackoverflow.com/questions/4898736/java-static-field-in-abstract-class/4898769#4898769
+    public abstract boolean withdraw(double amount);
+    public abstract double getInterest();
 }
