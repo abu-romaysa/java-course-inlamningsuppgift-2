@@ -1,10 +1,17 @@
 package saldao8;
 
+/**
+ * This class implements an abstract base class for accounts and it's needed support and management
+ * as transactions, account information etc.
+ *
+ * @author Salim Daoud, saldao-8
+ */
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Account
+public abstract class Account implements AccountTypes
 {
     private double balance;
     private int accountId;
@@ -12,6 +19,9 @@ public abstract class Account
     private static int accountIdCounter = 1001;
     private ArrayList<String> transactions = new ArrayList<String>();
     
+    /**
+     * Constructor
+     */
     public Account()
     {
         // assign an accountId and accumulate the counter that handles Ids
@@ -20,25 +30,45 @@ public abstract class Account
 
         balance = 0;
     }
-
+    
+    /**
+     * Provides the account's balance
+     *  
+     * @return account's balance
+     */
     protected double getBalance()
     {
         return balance;
     }
-
+    
+    /**
+     * Sets the account's balance
+     *  
+     * @param amount - the amount to set
+     */
     protected void setBalance(double amount)
     {
         balance = amount;
     }
 
+    /**
+     * Provides the account's interest rate 
+     * 
+     * @return the interest rate
+     */
     protected double getInterestRate()
     {
         return interestRate;
     }
 
-    protected void setInterestRate(double interest)
+    /**
+     * Sets the account's interest rate 
+     * 
+     * @param interestRate - the interest rate 
+     */
+    protected void setInterestRate(double interestRate)
     {
-        interestRate = interest;
+        this.interestRate = interestRate;
     }
 
     /**
@@ -54,8 +84,7 @@ public abstract class Account
     /**
      * Deposits the amount to the account
      * 
-     * @param amount
-     *            - the amount to deposit
+     * @param amount - the amount to deposit
      */
     public void deposit(double amount)
     {
@@ -64,6 +93,11 @@ public abstract class Account
         transactions.add(getTransactionDate() + " " + amount + " " + balance); 
     }
     
+    /**
+     * Creates and provides a transaction date
+     * 
+     * @return string containing a transaction date
+     */
     protected String getTransactionDate()
     {
         // Instantiate a Date object
@@ -89,11 +123,21 @@ public abstract class Account
         return transactionDate;
     }
     
+    /**
+     * Adds a transaction to the account's transaction history
+     * 
+     * @param transaction - transaction to add to the list
+     */
     protected void setTransaction(String transaction)
     {
         transactions.add(transaction);
     }
     
+    /**
+     * Provides the account's transactions
+     * 
+     * @return a list of strings containing all the account's transactions
+     */
     public ArrayList<String> getTransactions()
     {
         return transactions;
@@ -109,9 +153,30 @@ public abstract class Account
         return Integer.toString(accountId) + " " + Double.toString(balance) + " " + getAccountType() + " "
                 + Double.toString(interestRate);
     }
-
-    // declaration of abstract methods
-    protected abstract String getAccountType(); // https://stackoverflow.com/questions/4898736/java-static-field-in-abstract-class/4898769#4898769
+    
+    /****************************************************
+     *  Declaration of abstract methods
+     ****************************************************/
+    
+    /**
+     * Provides the type of the account
+     * 
+     * @return string containing the type of the account
+     */
+    protected abstract AccountType getAccountType(); // https://stackoverflow.com/questions/4898736/java-static-field-in-abstract-class/4898769#4898769
+      
+    /**
+     * Withdraws the amount from the account if condition met
+     * 
+     * @param amount - the amount to withdraw
+     * @return true if amount is withdrawn otherwise false
+     */
     public abstract boolean withdraw(double amount);
+    
+    /**
+     * Provides the amount of interest
+     * 
+     * @return amount of interest
+     */
     public abstract double getInterest();
 }

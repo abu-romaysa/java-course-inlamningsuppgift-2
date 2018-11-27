@@ -7,11 +7,11 @@ package saldao8;
  * @author Salim Daoud, saldao-8
  */
 
-public class SavingsAccount extends Account
+public class SavingsAccount extends Account implements AccountTypes
 {
     private boolean neverWithdrawn;
     private static double interestRate4Withdrawal;
-    private static final String ACCOUNT_TYPE = "Saving account"; 
+    private static final AccountType ACCOUNT_TYPE = AccountType.SAVINGS_ACCOUNT; 
 
     /**
      * Constructor
@@ -41,11 +41,15 @@ public class SavingsAccount extends Account
      * @param amount - the amount to withdraw
      * @return true if amount is withdrawn otherwise false
      */
+    /* (non-Javadoc)
+     * @see saldao8.Account#withdraw(double)
+     */
     public boolean withdraw(double amount)
     {
         double balance = this.getBalance();
         
-        if(neverWithdrawn)
+        // checks if the full amount exists
+        if(neverWithdrawn) // never withdrawn before i.e. no interest should be counted for
         {
             if((balance - amount) < 0)
             {
@@ -54,7 +58,7 @@ public class SavingsAccount extends Account
             
             neverWithdrawn = false; // todo kan nere men d sätter jag den hela tiden till true kanske ej optimerat
         }
-        else
+        else // withdrawn before and an interest should be counted for
         {
             amount += (amount * interestRate4Withdrawal/100);  
             
@@ -65,16 +69,18 @@ public class SavingsAccount extends Account
         }
         
         balance -= amount;
-//        System.out.println("balance: " + balance);
-//        System.out.println("amount: " + amount);
         this.setBalance(balance);
         
+        // add transaction to the transaction history
         this.setTransaction(this.getTransactionDate() + " " + (0 - amount) + " " + balance); 
         
         return true;     
     }
     
-    protected String getAccountType()
+    /* (non-Javadoc)
+     * @see saldao8.Account#getAccountType()
+     */
+    protected AccountType getAccountType()
     {
         return ACCOUNT_TYPE;
     }
@@ -83,7 +89,7 @@ public class SavingsAccount extends Account
     {
         System.out.println("testing");
 
-        SavingsAccount sa = new SavingsAccount();
+        SavingsAccount sa = new SavingsAccount();   
 //        SavingsAccount sa2 = new SavingsAccount();
 //
 //        System.out.println(sa.getBalance());

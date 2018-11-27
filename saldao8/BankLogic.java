@@ -252,6 +252,13 @@ public class BankLogic implements AccountTypes
         return false;
     }
     
+    /**
+     * Provides information about a customer's account transactions
+     * 
+     * @param personalIdentityNumber - belonging to the customer of interest
+     * @param accountId - the account ID in question
+     * @return a list of strings containing all the account's transactions
+     */
     public ArrayList<String> getTransactions(String personalIdentityNumber, int accountId)
     {
         ArrayList<String> transactions = new ArrayList<String>();

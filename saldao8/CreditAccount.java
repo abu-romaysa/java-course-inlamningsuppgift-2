@@ -4,7 +4,7 @@ public class CreditAccount extends Account
 {
     private double creditLimit; // should I initialize static values here? https://beginnersbook.com/2013/05/static-variable/ - Static variables are initialized before any object of that class is created.
                                 // antar ej static för olika för olika kunder
-    private final static String ACCOUNT_TYPE = "Credit account"; 
+    private final static AccountType ACCOUNT_TYPE = AccountType.CREDIT_ACCOUNT; 
     
     /**
      * Constructor
@@ -21,6 +21,9 @@ public class CreditAccount extends Account
      * Provides the amount of interest
      * 
      * @return amount of interest
+     */
+    /* (non-Javadoc)
+     * @see saldao8.Account#getInterest()
      */
     public double getInterest()
     {
@@ -40,10 +43,14 @@ public class CreditAccount extends Account
      * @param amount - the amount to withdraw
      * @return true if amount is withdrawn otherwise false
      */
+    /* (non-Javadoc)
+     * @see saldao8.Account#withdraw(double)
+     */
     public boolean withdraw(double amount)
     {
         double balance = this.getBalance();
         
+        // check if the amount isn't exceeding the credit limit
         if((balance - amount) < (0 - creditLimit))
         {
             return false;
@@ -51,8 +58,11 @@ public class CreditAccount extends Account
         
         balance -= amount;
         this.setBalance(balance);
+        
+        // add transaction to the transaction history
         this.setTransaction(this.getTransactionDate() + " " + (0 - amount) + " " + balance);
         
+        // change the interest rate if the balance has become lower than 0
         if(balance < 0)
         {
             this.setInterestRate(7);
@@ -67,17 +77,25 @@ public class CreditAccount extends Account
      * @param amount
      *            - the amount to deposit
      */
+    /* (non-Javadoc)
+     * @see saldao8.Account#deposit(double)
+     */
     public void deposit(double amount)
     {
+        // first run the common code in the superclass
         super.deposit(amount); // todo antingen detta eller kolla typ i superklassen. detta med super fins i boken för att spara kodrader
         
+        // add specific subclass code that change interest rate if the new balance is 0 or larger
         if(this.getBalance() >= 0)
         {
             this.setInterestRate(0.5);
         }
     }
     
-    protected String getAccountType()
+    /* (non-Javadoc)
+     * @see saldao8.Account#getAccountType()
+     */
+    protected AccountType getAccountType()
     {
         return ACCOUNT_TYPE;
     }

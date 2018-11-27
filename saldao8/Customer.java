@@ -83,38 +83,42 @@ public class Customer implements AccountTypes
      * 
      * @return the account ID for the created account
      */
-//    public int createSavingsAccount()
-//    {
-//        SavingsAccount account = new SavingsAccount();
-//        accounts.add(account);
-//
-//        return account.getAccountId();
-//    }
     
+    /**
+     * Creates an account for the customer
+     * @param accountType - type of account to be created 
+     * @return the account ID for the created account, otherwise the value -1 if
+     *         it couldn't create an account
+     */
     public int createAccount(AccountType accountType)
     {
         Account account = null;
         
         if(accountType == AccountType.CREDIT_ACCOUNT)
         {
-            account = new CreditAccount();
-            System.out.println("created ca");
+            account = new CreditAccount();            
         }
         else if (accountType == AccountType.SAVINGS_ACCOUNT)
         {
-            account = new SavingsAccount(); 
-            System.out.println("created sa");
+            account = new SavingsAccount();            
         }
-        
-        accounts.add(account);
 
         if(account != null)
-        {
+        {            
+            // add the account to the customer's list of accounts
+            accounts.add(account);
+            
             return account.getAccountId();
         }
         else return -1;
     }
     
+    /**
+     * Provides information about the customer's account transactions
+     * 
+     * @param accountId - the account ID in question
+     * @return a list of strings containing all the account's transactions
+     */
     public ArrayList<String> getTransactions(int accountId)
     {
         ArrayList<String> transactions = new ArrayList<String>();
