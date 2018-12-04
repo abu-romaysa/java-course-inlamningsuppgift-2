@@ -92,7 +92,7 @@ public class Customer implements AccountTypes
         {
             account = new CreditAccount();            
         }
-        else if (accountType == AccountType.SAVINGS_ACCOUNT)
+        else if(accountType == AccountType.SAVINGS_ACCOUNT)
         {
             account = new SavingsAccount();            
         }
@@ -104,7 +104,8 @@ public class Customer implements AccountTypes
             
             return account.getAccountId();
         }
-        else return -1;
+        else 
+            return -1;
     }
     
     /**

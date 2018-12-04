@@ -11,7 +11,7 @@ public class SavingsAccount extends Account
 {
     private boolean neverWithdrawn;
     private static double interestRate4Withdrawal;
-    private static final AccountType ACCOUNT_TYPE = AccountType.SAVINGS_ACCOUNT; 
+    private static final AccountType ACCOUNT_TYPE = AccountType.SAVINGS_ACCOUNT;
 
     /**
      * Constructor
@@ -54,7 +54,7 @@ public class SavingsAccount extends Account
         }
         else // withdrawn before and an interest should be counted for
         {
-            amount += (amount * interestRate4Withdrawal/100);  
+            amount += (amount * interestRate4Withdrawal / 100);  
             
             if((balance - (amount)) < 0)
             {

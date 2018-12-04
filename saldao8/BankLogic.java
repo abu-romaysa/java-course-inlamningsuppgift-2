@@ -126,7 +126,7 @@ public class BankLogic implements AccountTypes
             deletedCustomerInfo.add(customer.toString());
 
             ArrayList<String> deletedCustomerAccounts = customer.deleteAccounts();
-            
+
             // merge the two lists into one
             deletedCustomerInfo.addAll(deletedCustomerAccounts);
 
