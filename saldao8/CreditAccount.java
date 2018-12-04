@@ -1,9 +1,15 @@
 package saldao8;
 
+/**
+ * This class implements a credit account and it's needed support and management
+ * as transactions, account information etc.
+ * 
+ * @author Salim Daoud, saldao-8
+ */
+
 public class CreditAccount extends Account
 {
-    private double creditLimit; // should I initialize static values here? https://beginnersbook.com/2013/05/static-variable/ - Static variables are initialized before any object of that class is created.
-                                // antar ej static för olika för olika kunder
+    private double creditLimit;
     private final static AccountType ACCOUNT_TYPE = AccountType.CREDIT_ACCOUNT; 
     
     /**
@@ -13,15 +19,10 @@ public class CreditAccount extends Account
     {
         super();
         
-        this.setInterestRate(0.5); // saldao: är den så viktig för modellen så att vi måste göra på detta vis // iom saldo 0
+        this.setInterestRate(0.5);
         creditLimit = 5000;
     }
     
-    /**
-     * Provides the amount of interest
-     * 
-     * @return amount of interest
-     */
     /* (non-Javadoc)
      * @see saldao8.Account#getInterest()
      */
@@ -29,7 +30,7 @@ public class CreditAccount extends Account
     {
         if(this.getBalance() < 0)
         {
-            return (this.getBalance() * (this.getInterestRate() / 100)); // todo om saldo e neg? abs värde?
+            return (this.getBalance() * (this.getInterestRate() / 100));
         }
         else
         {
@@ -37,12 +38,6 @@ public class CreditAccount extends Account
         }
     }
     
-    /**
-     * Withdraws the amount from the account if the full amount exists
-     * 
-     * @param amount - the amount to withdraw
-     * @return true if amount is withdrawn otherwise false
-     */
     /* (non-Javadoc)
      * @see saldao8.Account#withdraw(double)
      */
@@ -71,27 +66,21 @@ public class CreditAccount extends Account
         return true;
     }
     
-    /**
-     * Deposits the amount to the account
-     * 
-     * @param amount
-     *            - the amount to deposit
-     */
     /* (non-Javadoc)
      * @see saldao8.Account#deposit(double)
      */
     public void deposit(double amount)
     {
         // first run the common code in the superclass
-        super.deposit(amount); // todo antingen detta eller kolla typ i superklassen. detta med super fins i boken för att spara kodrader
-        
+        super.deposit(amount);
+
         // add specific subclass code that change interest rate if the new balance is 0 or larger
         if(this.getBalance() >= 0)
         {
             this.setInterestRate(0.5);
         }
     }
-    
+
     /* (non-Javadoc)
      * @see saldao8.Account#getAccountType()
      */

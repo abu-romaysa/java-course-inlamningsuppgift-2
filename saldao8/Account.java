@@ -15,7 +15,7 @@ public abstract class Account implements AccountTypes
 {
     private double balance;
     private int accountId;
-    private double interestRate; // todo bara för att det e en del i modellen/grunden - obs var static innan ej nu när den ändras pos/neg
+    private double interestRate;
     private static int accountIdCounter = 1001;
     private ArrayList<String> transactions = new ArrayList<String>();
     
@@ -100,26 +100,17 @@ public abstract class Account implements AccountTypes
      */
     protected String getTransactionDate()
     {
-        // Instantiate a Date object
+        // Instantiate a Date object that also contains the current date and time
         Date date = new Date();
 
-        // display time and date using toString()
-        System.out.println(date.toString());
-        
-        // Create an instance of SimpleDateFormat used for formatting 
-        // the string representation of date (month/day/year)
+        // A SimpleDateFormat instance can be used for formatting 
+        // the string representation of a date (year-month-day hour:minute:second)
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
-        // Using SimpleDateFormat format method we can create a string 
-        // representation of a date with the defined format.
-        
-        // todo https://stackoverflow.com/a/5683761
-        // https://www.javatpoint.com/java-date-to-string
-        // https://www.tutorialspoint.com/java/java_date_time.htm
+
+        // Use the format method to create a string 
+        // representation of a date with the above defined format.           
         String transactionDate = dateFormat.format(date);  
-        
-//        System.out.println(transactionDate);
-//             
+             
         return transactionDate;
     }
     
@@ -163,7 +154,7 @@ public abstract class Account implements AccountTypes
      * 
      * @return string containing the type of the account
      */
-    protected abstract AccountType getAccountType(); // https://stackoverflow.com/questions/4898736/java-static-field-in-abstract-class/4898769#4898769
+    protected abstract AccountType getAccountType();
       
     /**
      * Withdraws the amount from the account if condition met

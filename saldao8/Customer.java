@@ -2,7 +2,7 @@ package saldao8;
 
 /**
  * This class implements a customer and manages the customer's information and
- * accounts
+ * accounts.
  * 
  * @author Salim Daoud, saldao-8
  */
@@ -78,12 +78,6 @@ public class Customer implements AccountTypes
         return personalIdentityNumber;
     }
 
-    /**
-     * Creates a saving account for the customer
-     * 
-     * @return the account ID for the created account
-     */
-    
     /**
      * Creates an account for the customer
      * @param accountType - type of account to be created 

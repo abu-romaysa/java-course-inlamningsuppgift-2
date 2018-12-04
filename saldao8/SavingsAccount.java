@@ -7,7 +7,7 @@ package saldao8;
  * @author Salim Daoud, saldao-8
  */
 
-public class SavingsAccount extends Account implements AccountTypes
+public class SavingsAccount extends Account
 {
     private boolean neverWithdrawn;
     private static double interestRate4Withdrawal;
@@ -19,10 +19,10 @@ public class SavingsAccount extends Account implements AccountTypes
     public SavingsAccount()
     {
         super();
-        this.setInterestRate(1); // saldao: är den så viktig för modellen så att vi måste göra på detta vis
-        
+        this.setInterestRate(1);
+
         neverWithdrawn = true;
-        interestRate4Withdrawal = 2; // konsekvent
+        interestRate4Withdrawal = 2;
     }
     
     /**
@@ -35,12 +35,6 @@ public class SavingsAccount extends Account implements AccountTypes
         return (this.getBalance() * (this.getInterestRate() / 100));
     }
 
-    /**
-     * Withdraws the amount from the account if the full amount exists
-     * 
-     * @param amount - the amount to withdraw
-     * @return true if amount is withdrawn otherwise false
-     */
     /* (non-Javadoc)
      * @see saldao8.Account#withdraw(double)
      */
@@ -56,7 +50,7 @@ public class SavingsAccount extends Account implements AccountTypes
                 return false;
             }
             
-            neverWithdrawn = false; // todo kan nere men d sätter jag den hela tiden till true kanske ej optimerat
+            neverWithdrawn = false;
         }
         else // withdrawn before and an interest should be counted for
         {
