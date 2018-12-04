@@ -125,17 +125,6 @@ public class Customer implements AccountTypes
         
         return transactions;
     }
-    
-    public static void main(String[] args)
-    {
-        Customer c = new Customer("salim", "daoud", "811113");
-        int res = c.createAccount(AccountType.SAVINGS_ACCOUNT);
-        System.out.println(res);
-        
-        c.deposit(1001, 1000);
-        c.deposit(1001, 500);
-        System.out.println(c.getTransactions(1001));
-    }
 
     /**
      * Deletes all the accounts that belongs to the customer
@@ -279,5 +268,4 @@ public class Customer implements AccountTypes
 
         return null;
     }
-
 }

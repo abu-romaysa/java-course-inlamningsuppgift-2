@@ -78,45 +78,4 @@ public class SavingsAccount extends Account
     {
         return ACCOUNT_TYPE;
     }
-    
-    public static void main(String[] args)
-    {
-        System.out.println("testing");
-
-        SavingsAccount sa = new SavingsAccount();   
-//        SavingsAccount sa2 = new SavingsAccount();
-//
-//        System.out.println(sa.getBalance());
-//        System.out.println(sa.getAccountId());
-//        System.out.println(sa2.getAccountId());
-//        System.out.println(sa.getInterestRate4NegBalance());
-//        System.out.println(sa.toString());
-        
-        sa.deposit(1000);
-        //System.out.println(sa.getInterest());
-        
-//        System.out.println("getBalance: " + sa.getBalance());
-//        System.out.println("withdraw: " + sa.withdraw(500));
-//        System.out.println("getBalance: " + sa.getBalance());
-//        System.out.println("withdraw: " + sa.withdraw(500));
-//        System.out.println("getBalance: " + sa.getBalance());
-        
-        sa.deposit(2000);
-        System.out.println("Get transactions: " + sa.getTransactions());
-        
-        sa.withdraw(500);
-        System.out.println("Get transactions: " + sa.getTransactions());
-        
-//        System.out.println(sa.getAccountType());
-//        SavingsAccount sa2 = new SavingsAccount();
-//        System.out.println(sa2.getAccountType());
-//        CreditAccount ca = new CreditAccount();
-//        System.out.println(ca.getAccountType());
-//        System.out.println(sa.getAccountType());
-//        System.out.println(sa2.getAccountType());
-//        System.out.println(ca.getAccountType());
-        
-        System.out.println(sa.toString());
-    }
-
 }
