@@ -11,7 +11,7 @@ public class SavingsAccount extends Account
 {
     private boolean neverWithdrawn;
     private static double interestRate4Withdrawal;
-    private static final AccountType ACCOUNT_TYPE = AccountType.SAVINGS_ACCOUNT;
+    private final static String ACCOUNT_TYPE = "Sparkonto";
 
     /**
      * Constructor
@@ -74,7 +74,7 @@ public class SavingsAccount extends Account
     /* (non-Javadoc)
      * @see saldao8.Account#getAccountType()
      */
-    protected AccountType getAccountType()
+    protected String getAccountType()
     {
         return ACCOUNT_TYPE;
     }

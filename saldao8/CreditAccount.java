@@ -10,7 +10,7 @@ package saldao8;
 public class CreditAccount extends Account
 {
     private double creditLimit;
-    private final static AccountType ACCOUNT_TYPE = AccountType.CREDIT_ACCOUNT; 
+    private final static String ACCOUNT_TYPE = "Kreditkonto";
     
     /**
      * Constructor
@@ -30,7 +30,7 @@ public class CreditAccount extends Account
     {
         if(this.getBalance() < 0)
         {
-            return (this.getBalance() * (this.getInterestRate() / 100));
+            return (Math.round(this.getBalance() * (this.getInterestRate() / 100) * 10 / 10.0));
         }
         else
         {
@@ -84,7 +84,7 @@ public class CreditAccount extends Account
     /* (non-Javadoc)
      * @see saldao8.Account#getAccountType()
      */
-    protected AccountType getAccountType()
+    protected String getAccountType()
     {
         return ACCOUNT_TYPE;
     }

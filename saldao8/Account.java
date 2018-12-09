@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Account implements AccountTypes
+public abstract class Account
 {
     private double balance;
     private int accountId;
@@ -154,7 +154,7 @@ public abstract class Account implements AccountTypes
      * 
      * @return string containing the type of the account
      */
-    protected abstract AccountType getAccountType();
+    protected abstract String getAccountType();
       
     /**
      * Withdraws the amount from the account if condition met
